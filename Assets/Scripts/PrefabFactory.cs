@@ -52,7 +52,7 @@ public class PrefabFactory<T> : MonoBehaviour where T : Component
     {
         foreach (var go in gameObjects)
         {
-               DestroyImmediate(go);
+            DestroyImmediate(go);
         }
         gameObjects.Clear();
     }

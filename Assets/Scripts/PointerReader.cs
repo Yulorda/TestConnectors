@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public enum PointerReaderActionType
-{
-    Click,
-    Enter,
-    Exit,
-    Up,
-    Down
-}
 
 public class PointerReader : MonoBehaviour
 {
@@ -21,32 +10,32 @@ public class PointerReader : MonoBehaviour
     public event Action OnDown;
     public event Action OnDrag;
 
-    protected void Click()
+    public void Click()
     {
         OnClick?.Invoke();
     }
 
-    protected void PointerEnter()
+    public void PointerEnter()
     {
         OnEnter?.Invoke();
     }
 
-    protected void PointerExit()
+    public void PointerExit()
     {
         OnExit?.Invoke();
     }
 
-    protected void PointerUp()
+    public void PointerUp()
     {
         OnUp?.Invoke();
     }
 
-    protected void PointerDown()
+    public void PointerDown()
     {
         OnDown?.Invoke();
     }
 
-    protected void PointerDrag()
+    public void PointerDrag()
     {
         OnDrag?.Invoke();
     }

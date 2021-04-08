@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(PointerReader))]
-[RequireComponent(typeof(ElementModel))]
-public class StageMover : MonoBehaviour
+public class ConnectionMover : MonoBehaviour
 {
     [SerializeField]
     PointerReader pointerReader;
 
-    //TODO Сераиализовать интерфейс
+    //TODO заменить на интерфейс и сериализовать
     [SerializeField]
-    ElementModel movableElement;
+    MovingConnector movableElement;
 
     private Plane plane;
 
@@ -28,14 +26,14 @@ public class StageMover : MonoBehaviour
         pointerReader.OnUp += OnPointerUp;
     }
 
-    private void OnPointerDown()
+    public void OnPointerDown()
     {
         ((IMovable)movableElement).StartMove();
         var position = ((IMovable)movableElement).GetPosition();
         plane = new Plane(Vector3.up, Vector3.up * position.y); // ground plane
     }
 
-    private void OnPointerDrag()
+    public void OnPointerDrag()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -49,7 +47,7 @@ public class StageMover : MonoBehaviour
         }
     }
 
-    private void OnPointerUp()
+    public void OnPointerUp()
     {
         ((IMovable)movableElement).EndMove();
     }

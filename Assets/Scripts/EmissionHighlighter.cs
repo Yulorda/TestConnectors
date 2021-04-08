@@ -8,8 +8,7 @@ public class EmissionHighlighter : MonoBehaviour
     [SerializeField]
     private MeshRenderer meshRenderer;
 
-    [SerializeField]
-    private Color color;
+    public Color color;
 
     public void Highlight(bool state)
     {

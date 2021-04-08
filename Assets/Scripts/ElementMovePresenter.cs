@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElementMovePresenter : MonoBehaviour
 {
     [SerializeField]
-    ElementModel elementModel;
+    MovingConnector elementModel;
 
     [SerializeField]
     EmissionHighlighter highlighter;

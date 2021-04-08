@@ -1,7 +1,7 @@
-﻿public interface ISelectable
-{
-    bool IsSelected { get; }
+﻿using System.Drawing;
 
+public interface ISelectable
+{
     void Select();
 
     void UnSelect();
