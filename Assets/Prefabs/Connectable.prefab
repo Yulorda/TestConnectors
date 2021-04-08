@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 8867404568797701718}
   - component: {fileID: 6505737108239907717}
   - component: {fileID: 6625398939140064837}
-  - component: {fileID: 496555803647144696}
   - component: {fileID: 1991160737}
-  - component: {fileID: 1991160738}
   - component: {fileID: 1991160735}
   m_Layer: 0
   m_Name: Platrform
@@ -96,20 +94,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &496555803647144696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317305797451883148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e757c658875fd18498f4270f6caeff48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementModel: {fileID: 154359528}
-  highlighter: {fileID: 1991160735}
 --- !u!114 &1991160737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,20 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139d50e4cec4f94088ace2c8916d1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointerReader: {fileID: 1991160738}
   movableElement: {fileID: 154359528}
---- !u!114 &1991160738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317305797451883148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f847e60890770b041b7453795bd68300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  highlighter: {fileID: 1991160735}
 --- !u!114 &1991160735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +134,7 @@ GameObject:
   - component: {fileID: 6734796079297714217}
   - component: {fileID: 2168407295058359912}
   - component: {fileID: 6748276688876454120}
-  - component: {fileID: 8750090649001733612}
   - component: {fileID: 1449862407}
-  - component: {fileID: 1449862410}
   - component: {fileID: 1449862406}
   m_Layer: 0
   m_Name: Connector
@@ -246,18 +216,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8750090649001733612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7224230683840592854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48b2fe1ae43dd0489b34010ff8cd6b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1449862407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,20 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connector: {fileID: 154359528}
   highlighter: {fileID: 1449862406}
-  connectorColors: {fileID: 11400000, guid: 0d4584f391260b44bb7710e81420caa5, type: 2}
-  pointerReader: {fileID: 1449862410}
---- !u!114 &1449862410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7224230683840592854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f847e60890770b041b7453795bd68300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1449862406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,5 +289,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2134145c738fc14e9418fc77fb7ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectableGroupElement: {fileID: 8750090649001733612}
   connectorPosition: {fileID: 5718056029114317225}

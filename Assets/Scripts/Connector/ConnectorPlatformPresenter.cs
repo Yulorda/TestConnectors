@@ -1,39 +1,31 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ConnectionMover : MonoBehaviour
+public class ConnectorPlatformPresenter : MonoBehaviour
 {
-    [SerializeField]
-    PointerReader pointerReader;
-
     //TODO заменить на интерфейс и сериализовать
     [SerializeField]
     MovingConnector movableElement;
 
+    [SerializeField]
+    EmissionHighlighter highlighter;
+
     private Plane plane;
-
-    private void Awake()
+    
+    private void OnMouseUp()
     {
-        pointerReader.OnDrag += OnPointerDrag;
-        pointerReader.OnDown += OnPointerDown;
-        pointerReader.OnUp += OnPointerUp;
+        ((IMovable)movableElement).EndMove();
+        highlighter.Highlight(false);
     }
 
-    private void OnDestroy()
+    private void OnMouseDown()
     {
-        pointerReader.OnDrag -= OnPointerDrag;
-        pointerReader.OnDown -= OnPointerDown;
-        pointerReader.OnUp += OnPointerUp;
-    }
-
-    public void OnPointerDown()
-    {
+        highlighter.Highlight(true);
         ((IMovable)movableElement).StartMove();
         var position = ((IMovable)movableElement).GetPosition();
         plane = new Plane(Vector3.up, Vector3.up * position.y); // ground plane
     }
 
-    public void OnPointerDrag()
+    private void OnMouseDrag()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -45,10 +37,5 @@ public class ConnectionMover : MonoBehaviour
 
             ((IMovable)movableElement).SetPosition(rayPoint);
         }
-    }
-
-    public void OnPointerUp()
-    {
-        ((IMovable)movableElement).EndMove();
     }
 }

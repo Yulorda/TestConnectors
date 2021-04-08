@@ -415,8 +415,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionPrefabFactory: {fileID: 72850656}
   fakeConnector: {fileID: 2035614441969170834}
-  fakePointerReader: {fileID: 8803134015474955707}
+  followFromMouseConnectorMover: {fileID: 8803134015474955706}
   connectionPresenterFactory: {fileID: 72850654}
+  colors: {fileID: 11400000, guid: 0d4584f391260b44bb7710e81420caa5, type: 2}
 --- !u!114 &2035614441969170834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2134145c738fc14e9418fc77fb7ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectableGroupElement: {fileID: 8803134015474955706}
+  connectorPosition: {fileID: 4809614020647373007}
 --- !u!4 &4809614020647373007
 Transform:
   m_ObjectHideFlags: 0
@@ -454,9 +455,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4809614020647373007}
   - component: {fileID: 2035614441969170834}
-  - component: {fileID: 8803134015474955708}
-  - component: {fileID: 8803134015474955707}
   - component: {fileID: 8803134015474955706}
+  - component: {fileID: 8803134015474955707}
   m_Layer: 0
   m_Name: FakeConnection
   m_TagString: Untagged
@@ -473,9 +473,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8803134015474955705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48b2fe1ae43dd0489b34010ff8cd6b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b9fbc41e6fa3f142a039e95d2234961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingConnector: {fileID: 2035614441969170834}
 --- !u!114 &8803134015474955707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,20 +486,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8803134015474955705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c1b84faccc681469c402fe5a050079, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f4575293a83444fbeb8c2cc3f1af95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8803134015474955708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803134015474955705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c139d50e4cec4f94088ace2c8916d1d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointerReader: {fileID: 8803134015474955707}
-  movableElement: {fileID: 2035614441969170834}
+  movingConnector: {fileID: 2035614441969170834}
+  connectorColors: {fileID: 11400000, guid: 0d4584f391260b44bb7710e81420caa5, type: 2}
