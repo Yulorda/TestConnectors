@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139d50e4cec4f94088ace2c8916d1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movableElement: {fileID: 154359528}
+  movingConnector: {fileID: 154359528}
   highlighter: {fileID: 1991160735}
 --- !u!114 &1991160735
 MonoBehaviour:

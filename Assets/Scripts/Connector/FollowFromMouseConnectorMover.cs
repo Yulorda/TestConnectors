@@ -6,26 +6,26 @@ public class FollowFromMouseConnectorMover : MonoBehaviour
     [SerializeField]
     MovingConnector movingConnector;
 
-    private Plane plane;
+    private Vector3 distance;
 
     // Start is called before the first frame update
     public void StartFollow()
     {
         ((IMovable)movingConnector).StartMove();
         var position = ((IMovable)movingConnector).GetPosition();
-        plane = new Plane(Vector3.up, Vector3.up * position.y); // ground plane
+        distance = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Following();
         StartCoroutine(StartFollowing());
     }
 
     private IEnumerator StartFollowing()
     {
-        while(true)
+        while (true)
         {
             yield return null;
             Following();
 
-            if(Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 EndFollow();
                 break;
@@ -35,16 +35,10 @@ public class FollowFromMouseConnectorMover : MonoBehaviour
 
     private void Following()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        float distance; // the distance from the ray origin to the ray intersection of the plane
-        if (plane.Raycast(ray, out distance))
-        {
-            Vector3 rayPoint = ray.GetPoint(distance);
-            Vector3 snappedRayPoint = rayPoint;
-
-            ((IMovable)movingConnector).SetPosition(rayPoint);
-        }
+        var position = ((IMovable)movingConnector).GetPosition();
+        Vector3 distance_to_screen = Camera.main.WorldToScreenPoint(position);
+        Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen.z));
+        ((IMovable)movingConnector).SetPosition(new Vector3(pos_move.x, position.y, pos_move.z));
     }
 
     public void EndFollow()

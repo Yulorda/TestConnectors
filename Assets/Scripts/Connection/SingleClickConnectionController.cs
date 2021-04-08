@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class SingleClickConnectionController
 {
-    private MovingConnection currentConnection;
+    private ConnectionPresenterFactory connectionPresenterFactory;
+    private ConnectorsSelectableGroup selectableGroup;
+    private ConnectorColors colors;
 
-    ConnectionPresenterFactory connectionPresenterFactory;
-    ConnectorsSelectableGroup selectableGroup;
-    ConnectorColors colors;
+    private MovingConnection currentConnection;
 
     public SingleClickConnectionController(IEnumerable<MovingConnector> connectors, ConnectionPresenterFactory connectionPresenterFactory, ConnectorsSelectableGroup selectableGroup, ConnectorColors colors)
     {
-        this.colors = colors;
-        this.selectableGroup = selectableGroup;
-        this.connectionPresenterFactory = connectionPresenterFactory;
         foreach (var connector in connectors)
         {
             connector.OnConnectionPointClick += OnClick;
             connector.OnConnectionPointRetention += OnRetention;
             connector.OnDestroyConnector += OnDestroyConnector;
         }
+
+        this.connectionPresenterFactory = connectionPresenterFactory;
+        this.colors = colors;
+        this.selectableGroup = selectableGroup;
     }
 
     private void OnDestroyConnector(MovingConnector connector)
@@ -34,7 +35,7 @@ public class SingleClickConnectionController
     {
         if (currentConnection != null)
         {
-            if (connector == currentConnection.GetConnector(currentConnection.GetConnectorCount() - 1))
+            if (connector == currentConnection.GetLastConnector())
             {
                 currentConnection.Destroy();
             }
@@ -43,15 +44,19 @@ public class SingleClickConnectionController
                 currentConnection.AddConnector(connector);
             }
 
-            currentConnection = null;
             selectableGroup.UnSelectAll();
+            
+            currentConnection = null;
         }
         else
         {
             Debug.Log("SingleClickConnection");
+            
             selectableGroup.UnSelectAll();
+         
             currentConnection = new MovingConnection(connector);
-            connectionPresenterFactory.Create(currentConnection);
+            connectionPresenterFactory.Create().Inject(currentConnection);
+
             connector.Select(colors.selectedColor);
             selectableGroup.SelectGroup(colors.whenSelectAnotherElementColor);
         }

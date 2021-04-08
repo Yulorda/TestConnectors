@@ -4,38 +4,32 @@ public class ConnectorPlatformPresenter : MonoBehaviour
 {
     //TODO заменить на интерфейс и сериализовать
     [SerializeField]
-    MovingConnector movableElement;
+    MovingConnector movingConnector;
 
     [SerializeField]
     EmissionHighlighter highlighter;
 
-    private Plane plane;
-    
+    private Vector3 distance;
+
     private void OnMouseUp()
     {
-        ((IMovable)movableElement).EndMove();
+        ((IMovable)movingConnector).EndMove();
         highlighter.Highlight(false);
     }
 
     private void OnMouseDown()
     {
         highlighter.Highlight(true);
-        ((IMovable)movableElement).StartMove();
-        var position = ((IMovable)movableElement).GetPosition();
-        plane = new Plane(Vector3.up, Vector3.up * position.y); // ground plane
+        ((IMovable)movingConnector).StartMove();
+        var position = ((IMovable)movingConnector).GetPosition();
+        distance = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(position).z)) - position;
     }
 
     private void OnMouseDrag()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        float distance; // the distance from the ray origin to the ray intersection of the plane
-        if (plane.Raycast(ray, out distance))
-        {
-            Vector3 rayPoint = ray.GetPoint(distance);
-            Vector3 snappedRayPoint = rayPoint;
-
-            ((IMovable)movableElement).SetPosition(rayPoint);
-        }
+        var position = ((IMovable)movingConnector).GetPosition();
+        Vector3 distance_to_screen = Camera.main.WorldToScreenPoint(position);
+        Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen.z));
+        ((IMovable)movingConnector).SetPosition(new Vector3(pos_move.x - distance.x, position.y, pos_move.z - distance.z));
     }
 }

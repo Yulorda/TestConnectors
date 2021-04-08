@@ -5,32 +5,34 @@ using UnityEngine;
 
 public class RetentionConnectionController
 {
-    private MovingConnection currentConnection;
-
     private MovingConnector fakeConnector;
     private FollowFromMouseConnectorMover followFromMouseConnectorMover;
     private ConnectionPresenterFactory connectionPresenterFactory;
     private ConnectorsSelectableGroup selectableGroup;
     private ConnectorColors colors;
 
-    public RetentionConnectionController(IEnumerable<MovingConnector> connectors, 
-        MovingConnector fakeConnector, 
-        FollowFromMouseConnectorMover followFromMouseConnectorMover, 
+    private MovingConnection currentConnection;
+
+    public RetentionConnectionController(IEnumerable<MovingConnector> connectors,
+        MovingConnector fakeConnector,
+        FollowFromMouseConnectorMover followFromMouseConnectorMover,
         ConnectionPresenterFactory connectionPresenterFactory,
         ConnectorsSelectableGroup selectableGroup,
         ConnectorColors colors)
     {
-        this.colors = colors;
-        this.selectableGroup = selectableGroup;
-        this.fakeConnector = fakeConnector;
-        this.connectionPresenterFactory = connectionPresenterFactory;
-        fakeConnector.OnEndMove += OnEndMoveFakeConnector;
-        this.followFromMouseConnectorMover = followFromMouseConnectorMover;
         foreach (var connector in connectors)
         {
             connector.OnConnectionPointRetention += OnRetention;
             connector.OnDestroyConnector += OnDestroyConnector;
         }
+
+        this.fakeConnector = fakeConnector;
+        this.followFromMouseConnectorMover = followFromMouseConnectorMover;
+        this.connectionPresenterFactory = connectionPresenterFactory;
+        this.selectableGroup = selectableGroup;
+        this.colors = colors;
+
+        fakeConnector.OnEndMove += OnEndMoveFakeConnector;
     }
 
     private void OnDestroyConnector(MovingConnector connector)
@@ -44,10 +46,12 @@ public class RetentionConnectionController
         if (currentConnection == null)
         {
             currentConnection = new MovingConnection(connector, fakeConnector);
+
             followFromMouseConnectorMover.StartFollow();
             connector.Select(colors.selectedColor);
             selectableGroup.SelectGroup(colors.whenSelectAnotherElementColor);
-            connectionPresenterFactory.Create(currentConnection);
+
+            connectionPresenterFactory.Create().Inject(currentConnection);
         }
     }
 
@@ -55,9 +59,9 @@ public class RetentionConnectionController
     {
         var temp = FindConnector();
 
-        if(temp!=null && temp!= currentConnection.GetConnector(0))
+        if (temp != null && temp != currentConnection.GetConnector(0))
         {
-            if(!currentConnection.TryChangeConnector(temp,fakeConnector))
+            if (!currentConnection.TryChangeConnector(temp, fakeConnector))
             {
                 currentConnection.Destroy();
             }
@@ -71,7 +75,7 @@ public class RetentionConnectionController
 
         currentConnection = null;
     }
-   
+
     private MovingConnector FindConnector()
     {
         RaycastHit hit;

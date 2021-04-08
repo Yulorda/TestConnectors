@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2c460bdb8860148b5908ccd559a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionLinePresenterPrefab: {fileID: 5282865577529700166, guid: 3cb6cd6b14439df43b9290553a8128db,
-    type: 3}
+  prefab: {fileID: 5282865577529700166, guid: 3cb6cd6b14439df43b9290553a8128db, type: 3}
 --- !u!4 &72850655
 Transform:
   m_ObjectHideFlags: 0
@@ -179,9 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b750c9ca91740f04cad7049ced8b1cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 1288515604}
   prefab: {fileID: 154359528, guid: 34741b90a6f20bd43b73f889865c454c, type: 3}
-  prefabCount: 10
 --- !u!1 &439251983
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,10 +410,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a975278f3ef64d3488208a285ab94a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 10
+  main: {fileID: 1288515604}
   connectionPrefabFactory: {fileID: 72850656}
+  connectionPresenterFactory: {fileID: 72850654}
   fakeConnector: {fileID: 2035614441969170834}
   followFromMouseConnectorMover: {fileID: 8803134015474955706}
-  connectionPresenterFactory: {fileID: 72850654}
   colors: {fileID: 11400000, guid: 0d4584f391260b44bb7710e81420caa5, type: 2}
 --- !u!114 &2035614441969170834
 MonoBehaviour:

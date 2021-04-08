@@ -85,6 +85,11 @@ public class MovingConnection
         }
     }
 
+    public MovingConnector GetLastConnector()
+    {
+        return connections[connections.Count - 1];
+    }
+
     public int GetConnectorCount()
     {
         return connections.Count;
