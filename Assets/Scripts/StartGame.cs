@@ -1,33 +1,31 @@
-﻿using System.Linq;
+﻿using MovingConnector;
+using System;
 using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
     [SerializeField]
-    int count;
+    private int count;
 
     [SerializeField]
-    Main main;
+    private Main main;
 
     [SerializeField]
-    ConnectorFactory connectionPrefabFactory;
+    private MovingConnectorFactory movingConnectorFactory;
 
     [SerializeField]
-    ConnectionPresenterFactory connectionPresenterFactory;
+    private ConnectionFactory connectionFactory;
 
     [SerializeField]
-    MovingConnector fakeConnector;
+    private FakeConnectorPresenter fakeConnectorPresenter;
 
     [SerializeField]
-    FollowFromMouseConnectorMover followFromMouseConnectorMover;
-
-    [SerializeField]
-    ConnectorColors colors;
+    private SelectableColors colors;
 
     [ContextMenu("Create")]
     public void Create()
     {
-        var elements = connectionPrefabFactory.Create(count);
+        var elements = movingConnectorFactory.Create(count);
 
         foreach (var element in elements)
         {
@@ -36,7 +34,7 @@ public class StartGame : MonoBehaviour
 
         ConnectorsSelectableGroup selectableController = new ConnectorsSelectableGroup(elements);
 
-        var singleClickConnectionController = new SingleClickConnectionController(elements, connectionPresenterFactory, selectableController, colors);
-        var retentionConnectionFactory = new RetentionConnectionController(elements, fakeConnector, followFromMouseConnectorMover, connectionPresenterFactory, selectableController, colors);
+        var singleClickConnectionController = new SingleClickConnectionController(elements, connectionFactory, selectableController, colors);
+        var retentionConnectionFactory = new DragConnectionController(elements, fakeConnectorPresenter, connectionFactory, selectableController, colors);
     }
 }

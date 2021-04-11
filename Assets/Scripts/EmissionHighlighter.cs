@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class EmissionHighlighter : MonoBehaviour
@@ -12,7 +10,7 @@ public class EmissionHighlighter : MonoBehaviour
 
     public void Highlight(bool state)
     {
-        if(state)
+        if (state)
         {
             meshRenderer.material.EnableKeyword("_EMISSION");
             meshRenderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.AnyEmissive;

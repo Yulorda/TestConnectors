@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8867404568797701718}
   - component: {fileID: 6505737108239907717}
   - component: {fileID: 6625398939140064837}
-  - component: {fileID: 1991160737}
+  - component: {fileID: 1909572981237025509}
   - component: {fileID: 1991160735}
   m_Layer: 0
   m_Name: Platrform
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1991160737
+--- !u!114 &1909572981237025509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,10 +103,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317305797451883148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c139d50e4cec4f94088ace2c8916d1d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 182c87021ccf1b04b88b4b8549dbeb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingConnector: {fileID: 154359528}
   highlighter: {fileID: 1991160735}
 --- !u!114 &1991160735
 MonoBehaviour:
@@ -134,7 +133,7 @@ GameObject:
   - component: {fileID: 6734796079297714217}
   - component: {fileID: 2168407295058359912}
   - component: {fileID: 6748276688876454120}
-  - component: {fileID: 1449862407}
+  - component: {fileID: 6489997818978565965}
   - component: {fileID: 1449862406}
   m_Layer: 0
   m_Name: Connector
@@ -216,7 +215,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1449862407
+--- !u!114 &6489997818978565965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,10 +224,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7224230683840592854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5113abd532d63e4e9c1fdf202a9faf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cfbcc3fd8e198d4bb87d9ae2dee775d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connector: {fileID: 154359528}
   highlighter: {fileID: 1449862406}
 --- !u!114 &1449862406
 MonoBehaviour:
@@ -253,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6809683382107482037}
-  - component: {fileID: 154359528}
+  - component: {fileID: 4041483676303626844}
   m_Layer: 0
   m_Name: Connectable
   m_TagString: Untagged
@@ -277,7 +275,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &154359528
+--- !u!114 &4041483676303626844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +284,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7355775886437882563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2134145c738fc14e9418fc77fb7ddb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f5f9656f7acdc448a2ecabfd72a481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorPosition: {fileID: 5718056029114317225}
+  connectorPlatform: {fileID: 1909572981237025509}
+  connectorPoint: {fileID: 6489997818978565965}

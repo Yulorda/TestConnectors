@@ -40,4 +40,9 @@ public class ConnectorsSelectableGroup
     {
         selectables.Remove(selectable);
     }
+
+    public bool Contains(ISelectable<Color> selectable)
+    {
+        return selectables.Contains(selectable);
+    }
 }
