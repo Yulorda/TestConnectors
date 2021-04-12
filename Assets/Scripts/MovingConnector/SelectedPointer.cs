@@ -35,7 +35,7 @@ namespace MovingConnector
 
         public void AddToIgnoreList(Connector connector)
         {
-            if(!ignore.Contains(connector))
+            if (!ignore.Contains(connector))
             {
                 ignore.Add(connector);
             }
@@ -57,27 +57,29 @@ namespace MovingConnector
                 {
                     if (temp != connector)
                     {
-                        currentConnector.Select(colors.whenSelectAnotherElementColor);
+                        SelectConnector(currentConnector, colors.whenSelectAnotherElementColor);
                         currentConnector = temp;
-                        if (currentConnector != null)
-                        {
-                            currentConnector.Select(colors.selectedColor);
-                        }
+                        SelectConnector(currentConnector, colors.selectedColor);
                     }
                     else
                     {
-                        currentConnector.Select(colors.whenSelectAnotherElementColor);
+                        SelectConnector(currentConnector, colors.whenSelectAnotherElementColor);
                         currentConnector = null;
                     }
                 }
             }
             else
             {
-                if (temp != connector && temp != null && !ignore.Contains(temp))
-                {
-                    currentConnector = temp;
-                    currentConnector.Select(colors.selectedColor);
-                }
+                currentConnector = temp;
+                SelectConnector(currentConnector, colors.selectedColor);
+            }
+        }
+
+        private void SelectConnector(Connector connector, Color color)
+        {
+            if (connector != null && connector != this.connector && !ignore.Contains(connector))
+            {
+                connector.Select(color);
             }
         }
 

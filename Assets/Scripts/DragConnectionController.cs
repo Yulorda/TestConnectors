@@ -59,9 +59,9 @@ public class DragConnectionController
         {
             currentConnection = connectionFactory.Create(connector, fakeConnector);
 
+            fakeConnectorPresenter.selectedPointer.AddToIgnoreList(connector);
             fakeConnectorPresenter.followMouse.StartFollow();
             fakeConnectorPresenter.selectedPointer.ChangeSelectedState(true);
-            fakeConnectorPresenter.selectedPointer.AddToIgnoreList(connector);
 
             connector.Select(colors.selectedColor);
             selectableGroup.SelectGroup(colors.whenSelectAnotherElementColor);
