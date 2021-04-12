@@ -22,6 +22,7 @@ public class DragConnectionController
         foreach (var connector in connectors)
         {
             connector.OnConnectionPointPoinerDrag += OnRetention;
+            connector.OnConnectionPointPointerClick += OnClick;
             connector.OnDestroy += OnDestroyConnector;
         }
 
@@ -43,7 +44,13 @@ public class DragConnectionController
     private void OnDestroyConnector(Connector connector)
     {
         connector.OnConnectionPointPoinerDrag -= OnRetention;
+        connector.OnConnectionPointPointerClick -= OnClick;
         connector.OnDestroy -= OnDestroyConnector;
+    }
+
+    private void OnClick(Connector connector)
+    {
+        fakeConnector.SetPosition(connector.GetConnectorPosition());
     }
 
     private void OnRetention(Connector connector)
