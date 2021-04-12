@@ -8,7 +8,7 @@ public class DragConnectionController
     private ConnectionFactory connectionFactory;
     private ConnectorsSelectableGroup selectableGroup;
     private SelectableColors colors;
-    
+
     private Connector fakeConnector;
     private FakeConnectorPresenter fakeConnectorPresenter;
     private Connection currentConnection;
@@ -60,15 +60,20 @@ public class DragConnectionController
             currentConnection = connectionFactory.Create(connector, fakeConnector);
 
             fakeConnectorPresenter.followMouse.StartFollow();
+            fakeConnectorPresenter.selectedPointer.ChangeSelectedState(true);
+            fakeConnectorPresenter.selectedPointer.AddToIgnoreList(connector);
 
             connector.Select(colors.selectedColor);
             selectableGroup.SelectGroup(colors.whenSelectAnotherElementColor);
         }
     }
 
-    private void OnEndMoveFakeConnector(Connector obj)
+    private void OnEndMoveFakeConnector(Connector connector)
     {
         var temp = FindConnector();
+
+        fakeConnectorPresenter.selectedPointer.ChangeSelectedState(false);
+        fakeConnectorPresenter.selectedPointer.RemoveFromIgnoreList(currentConnection.GetConnector(0));
 
         if (temp != null && temp != currentConnection.GetConnector(0))
         {

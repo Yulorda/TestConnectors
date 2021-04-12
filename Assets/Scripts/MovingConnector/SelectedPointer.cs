@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace MovingConnector
 {
@@ -9,14 +10,40 @@ namespace MovingConnector
         private SelectableColors colors;
         private Connector currentConnector;
 
+        private List<Connector> ignore = new List<Connector>();
+
         public void Inject(Connector connector, ConnectorsSelectableGroup selectableGroup, SelectableColors colors)
         {
             this.connector = connector;
             this.selectableGroup = selectableGroup;
             this.colors = colors;
 
-            connector.OnMoving += OnMoving;
             connector.OnDestroy += Destroy;
+        }
+
+        public void ChangeSelectedState(bool state)
+        {
+            if (state)
+            {
+                connector.OnMoving += OnMoving;
+            }
+            else
+            {
+                connector.OnMoving -= OnMoving;
+            }
+        }
+
+        public void AddToIgnoreList(Connector connector)
+        {
+            if(!ignore.Contains(connector))
+            {
+                ignore.Add(connector);
+            }
+        }
+
+        public void RemoveFromIgnoreList(Connector connector)
+        {
+            ignore.Remove(connector);
         }
 
         private void OnMoving(Connector obj)
@@ -46,7 +73,7 @@ namespace MovingConnector
             }
             else
             {
-                if (temp != connector && temp != null)
+                if (temp != connector && temp != null && !ignore.Contains(temp))
                 {
                     currentConnector = temp;
                     currentConnector.Select(colors.selectedColor);
